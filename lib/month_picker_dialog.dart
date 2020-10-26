@@ -30,24 +30,14 @@ Future<DateTime> showMonthPicker({
   return await showDialog<DateTime>(
     context: context,
     builder: (BuildContext context) {
-      return builder == null
-          ? _MonthPickerDialog(
-              initialDate: initialDate,
-              firstDate: firstDate,
-              lastDate: lastDate,
-              locale: locale,
-              localizations: localizations,
-            )
-          : builder(
-              context,
-              _MonthPickerDialog(
-                initialDate: initialDate,
-                firstDate: firstDate,
-                lastDate: lastDate,
-                locale: locale,
-                localizations: localizations,
-              ),
-            );
+      _MonthPickerDialog child = _MonthPickerDialog(
+        initialDate: initialDate,
+        firstDate: firstDate,
+        lastDate: lastDate,
+        locale: locale,
+        localizations: localizations,
+      );
+      return builder == null ? child : builder(context, child);
     },
   );
 }
